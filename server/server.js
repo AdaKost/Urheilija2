@@ -1,6 +1,13 @@
 require("dotenv").config(); // Ympäristömuuttuja
 
 const express = require("express");
+/*const cors = require("cors");
+app.use(
+  cors({
+    origin: ["http://localhost:3000/", "http://localhost:3001/"],
+  })
+);*/
+
 const app = express();
 
 // Middleware
