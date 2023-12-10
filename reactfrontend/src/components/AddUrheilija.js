@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useReducer, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import urheilijatContext from "../context/UrheilijatContext";
 
 export default function AddUrheilija() {
   const [urheilija, setUrheilija] = useState({ etunimi: "", sukunimi: "" });
+  const UrheilijatContext = useContext(urheilijatContext); //hooks
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -13,10 +15,11 @@ export default function AddUrheilija() {
       sukunimi: urheilija.sukunimi,
     };
 
-    axios.post("http://localhost:3000/urheilijat", data).then((res) => {
+    /*axios.post("http://localhost:3000/urheilijat", data).then((res) => {
       const palautus = res;
       console.log(palautus);
-    });
+    });*/
+    UrheilijatContext.setUrheilija(data);
   };
 
   return (

@@ -16,61 +16,64 @@ import {
 
 // Bootstrap käyttöön
 import "bootstrap/dist/css/bootstrap.min.css";
+import GlobalState from "./context/GlobalState";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <div className="leftPanel">
-          <Header />
+    <GlobalState>
+      <Router>
+        <div className="App">
+          <div className="leftPanel" class="container">
+            <Header />
+          </div>
+          <div className="rightPanel">
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={
+                  <>
+                    <ListUrheilijat />
+                  </>
+                }
+              />
+              <Route
+                path="/add"
+                element={
+                  <>
+                    <AddUrheilija />
+                  </>
+                }
+              />
+              <Route
+                path="/edit/:id"
+                element={
+                  <>
+                    <EditUrheilija />
+                  </>
+                }
+              />
+              <Route
+                path="/find/:id"
+                element={
+                  <>
+                    <FindUrheilija />
+                  </>
+                }
+              />
+              <Route
+                path="/delete/:id"
+                element={
+                  <>
+                    <DeleteUrheilija />
+                  </>
+                }
+              />
+            </Routes>
+          </div>
         </div>
-        <div className="rightPanel">
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <>
-                  <ListUrheilijat />
-                </>
-              }
-            />
-            <Route
-              path="/add"
-              element={
-                <>
-                  <AddUrheilija />
-                </>
-              }
-            />
-            <Route
-              path="/edit/:id"
-              element={
-                <>
-                  <EditUrheilija />
-                </>
-              }
-            />
-            <Route
-              path="/find/:id"
-              element={
-                <>
-                  <FindUrheilija />
-                </>
-              }
-            />
-            <Route
-              path="/delete/:id"
-              element={
-                <>
-                  <DeleteUrheilija />
-                </>
-              }
-            />
-          </Routes>
-        </div>
-      </div>
-    </Router>
+      </Router>
+    </GlobalState>
   );
 }
 

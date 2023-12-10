@@ -9,7 +9,7 @@ const Header = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h5 className="mt-0">Left Menu</h5>
+              <h5 className="mt-0">Sivusto</h5>
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <Link to="/" className="nav-link">

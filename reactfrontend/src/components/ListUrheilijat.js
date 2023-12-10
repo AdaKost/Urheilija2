@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import urheilijatContext from "../context/UrheilijatContext";
 
 function ListUrheilijat() {
   const [urheilijaData, setUrheilijadata] = useState([]);
 
-  useEffect((urheilijaData) => {
-    const fetchData = () => {
-      try {
+  const UrheilijatContext = useContext(urheilijatContext); //hooks
+  console.log(UrheilijatContext);
+  useEffect(() => {
+    UrheilijatContext.getUrheilijat();
+    console.log(UrheilijatContext);
+  }, []);
+
+  /*   try {
         axios
           .get("http://localhost:3000/urheilijat")
           .then((res) => {
@@ -21,7 +27,7 @@ function ListUrheilijat() {
     };
     fetchData();
     console.log(urheilijaData);
-  }, []);
+  }, []);*/
   return (
     <React.Fragment>
       <div className="container">
@@ -29,7 +35,7 @@ function ListUrheilijat() {
           <div className="col-md-12">
             <h5 className="mt-2">Urheilijoiden tiedot</h5>
             <div className="d-grid d-md-flex justify-content-md-end mb-3">
-              <Link to="/adduser" className="btn btn-warning">
+              <Link to="/add" className="btn btn-warning">
                 Lisää urheilija
               </Link>
             </div>
@@ -56,12 +62,12 @@ function ListUrheilijat() {
                     <td>{urheilijaData.saavutukset} </td>
                     <td>
                       <Link
-                        to={"/editUrheilija/" + urheilijaData.id}
+                        to={"/edit/" + urheilijaData.id}
                         className="btn btn-success mx-2"
                       >
                         Edit
                       </Link>
-                      <Link to="/deleteUser" className="btn btn-danger">
+                      <Link to="/delete" className="btn btn-danger">
                         Delete
                       </Link>
                     </td>
